@@ -13,9 +13,9 @@ weekend = ['Saturday','Sunday']
 
 def sleeping(b_day, b_vacation):
 	print(f"Weekday: {b_day}, Vacation: {b_vacation}")
-	if b_vacation == True:
+	if b_vacation:
 		print("True : We are sleeping")
-	elif b_vacation == False and b_day == False:
+	elif not b_vacation and not b_day:
 		print("True : We are sleeping")
 	else:
 		print("False : We are not sleeping")
@@ -36,7 +36,7 @@ if __name__ == "__main__":
 		print("Wrong Input")
 
 	v_day = int(input("Today is? \nMonday:- 1\nTuesday:-2\nWednesday:-3\nThursday:-4\nFriday:-5\nSaturday:-6\nSunday:-7 ::\n"))
-	if v_day in range(0,6):
+	if v_day in range(1,6):
 		b_day = True
 	elif v_day in [6,7]:
 		b_day = False
