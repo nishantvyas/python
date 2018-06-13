@@ -4,8 +4,8 @@ Find PI to the Nth Digit - Enter a number and have the program generate π (pi) 
 '''
 import math
 
-def pi_to_nth_digit(precision=2):
-    
+def pi(precision=2):
+
     """
     > n = 4
     > p = math.pi
@@ -19,5 +19,5 @@ def pi_to_nth_digit(precision=2):
 
 if __name__ == "__main__":
 
-    my_pi = pi_to_nth_digit(precision=3)
+    my_pi = pi(precision=5)
     print(my_pi)
