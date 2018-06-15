@@ -80,15 +80,41 @@ def is_prime_sqrt(givennumber):
 
             if total_factors >= 1:
                 print(f"Number {givennumber} is NOT prime.")
-                return
+                return False
 
     print(f"Number {givennumber} is PRIME")
 
+    return True
+
+def is_prime_list(givennumber):
+    """
+    print N-numbers(givennumber) of  prime numbers.
+    :param givennumber:
+    :return:
+    """
+    total_prime = 0
+    prime_numbers = []
+
+    if givennumber < 1:
+        print("Enter number larger than 0")
+        return
+    else:
+        next_number = 2
+        while True:
+            if is_prime_sqrt(next_number):
+                prime_numbers.append(next_number)
+                total_prime += 1
+
+            next_number += 1
+
+            if total_prime == givennumber:
+                break
+
+    print(f"List of {givennumber} prime numbers : {prime_numbers}")
     return
 
-
 if __name__ == "__main__":
-    """
+
     """
     print("***** Prime numbers with Factors *****")
     is_prime_with_factors_1(3)
@@ -113,5 +139,13 @@ if __name__ == "__main__":
     is_prime_sqrt(35)
     is_prime_sqrt(21)
     is_prime_sqrt(500)
+
+    """
+
+    print("***** List of X Prime numbers *****")
+
+    is_prime_list(1)
+    is_prime_list(5)
+    is_prime_list(10)
 
     ###print(timeit.timeit('is_prime_with_factors_1(500)', globals=globals(), number=100))
