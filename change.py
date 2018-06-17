@@ -17,17 +17,36 @@ def money_to_giveback(cost_of_item, user_paid):
 
     if money_to_return == 0:
         print("Thanks for doing business! Good day!")
-        return
-    elif money_to_return < 0:
-        flag_owe = "We"
-    else:
-        flag_owe = "You"
+    elif money_to_return > 0:
 
-    
-    print(f"{flag_owe} owe, {format_number(money_to_return,2)}")
+        money_to_return_in_cents = round(money_to_return * 100)
+
+        dollars = int(money_to_return_in_cents / 100)
+        money_to_return_in_cents = money_to_return_in_cents % 100
+
+
+        quarters = int(money_to_return_in_cents / 25)
+        money_to_return_in_cents = money_to_return_in_cents % 25
+
+
+        dimes = int(money_to_return_in_cents / 10)
+        money_to_return_in_cents = money_to_return_in_cents % 10
+
+
+        nickles = int(money_to_return_in_cents / 5)
+        money_to_return_in_cents = money_to_return_in_cents % 5
+
+        pennys = float(format_number(money_to_return_in_cents, 2))
+
+        print(f"Here's your change, {dollars} Dollars, {quarters} Quarters, {dimes} Dimes, {nickles} Nickles, {pennys} Pennys")
+    else:
+        still_to_pay = money_to_return * -1
+        print(f"You still owe us, {format_number(still_to_pay,2)}")
+
+    return
 
 if __name__ == "__main__":
 
     money_to_giveback(30,35)
-    money_to_giveback(30.99,35.001)
+    money_to_giveback(30.21,35)
     money_to_giveback(35.99,35.001)
