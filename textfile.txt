@@ -1,0 +1,5 @@
+This is test to count words in this file.
+Second line.
+Thrid.
+Bye.
+Good Day.
