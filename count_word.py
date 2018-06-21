@@ -10,5 +10,12 @@ def count_word(string=None):
 if __name__ == "__main__":
     """
     """
-    print("String has " + f"{count_word('test')}" + " words")
-    print("String has " + f"{count_word('My name is Nishant.')}" + " words")
+    #print("String has " + f"{count_word('test')}" + " words")
+    #print("String has " + f"{count_word('My name is Nishant.')}" + " words")
+    words = 0
+    file = "textfile.txt"
+    with open(file) as f:
+        for line in f:
+            words += count_word(line.strip())
+
+    print(f"Total words in file {file} are {words}")
