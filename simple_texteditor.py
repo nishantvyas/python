@@ -12,12 +12,10 @@ def readInLine(fileObj):
     """
 
     file_in_buffer = []
-    line_number = 1
 
     with open(fileObj) as f:
         for line in f:
-            file_in_buffer.append(f"{line_number} " + line.strip())
-            line_number += 1
+            file_in_buffer.append(line.strip())
 
     return file_in_buffer
 
@@ -30,11 +28,44 @@ if __name__ == "__main__":
     ### pathlib.path.is_file checks if file exists
 
     if Path(filename).is_file():
+
         print("Content of the file")
         print("*" * 50)
+
         local_buffer = readInLine(filename)
+        line_number = 1
+
         for lines in local_buffer:
-            print(lines)
+            print(f"{line_number} " + lines)
+            line_number += 1
+
+        ##check with user if they'd like to edit file.
+        edit = input("Do you want to edit the file (Y/N):")
+
+        while True:
+            ## circuit out if user wants to exit.
+            if edit == "Y" or edit == "y":
+                is_edit=True
+            elif edit == "N" or edit == "n":
+                print("Ok. Bye.")
+                break
+            else:
+                print("Wrong selection, try again.")
+
+            while is_edit:
+
+                ##Enter line number to edit
+                line_to_edit = int(input("Enter line number to edit:"))
+                if line_to_edit > len(local_buffer) or line_to_edit < 1:
+                    print("entered line number our of range")
+                    is_edit = False
+                else:
+                    new_value = (f"Enter new data for line {line_number}:")
+                    local_buffer[line_number-1] = new_value
+                    print("Saving the file.")
+
+
+
     else:
         print ("Opening new file to write")
         print("*" * 50)
