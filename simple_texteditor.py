@@ -21,18 +21,16 @@ def readInLine(fileObj):
 
     return file_in_buffer
 
-def writeToFile(fileObj, listObj):
+def writeToFile(fileObj, textObj):
     """
 
     :param fileObj:
-    :param listObj:
+    :param textObj:
     :return:
     """
 
-    f = open(fileObj,'w')
-
-    for line in listObj:
-        f.write(line)
+    with open(fileObj, 'a+') as f:
+        f.write(textObj)
         f.write("\n")
 
 
@@ -100,3 +98,15 @@ if __name__ == "__main__":
     else:
         print ("Opening new file to write")
         print("*" * 50)
+        print("Enter EOF to end writing and save to the file")
+        print("*" * 50)
+
+        text = input()
+        while text != "EOF":
+            writeToFile(filename,text)
+            text = input()
+
+        print("content is saved.")
+
+        for lines in readInLine(filename):
+            print(lines)
