@@ -28,7 +28,8 @@ def my_max(*args):
     print(f"Max number of given input {args} is {max_number}")
 
 if __name__ == "__main__":
-
+    """
+    """
     ###some test cases
     my_max(10,20)
     my_max(30,10)

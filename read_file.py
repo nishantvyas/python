@@ -41,7 +41,7 @@ if __name__ == "__main__":
         print(line.strip())
 
     print()
-    
+
     ### reading by chunk
     f = open(filename)
     for chunk in readInChunks(f):
