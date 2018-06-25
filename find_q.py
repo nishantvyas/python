@@ -25,9 +25,10 @@ def find_q(var_D=1):
 
 if __name__ == "__main__":
 
-    input_number = "100,150,180"
+    #input_number = "100,150,180"
+    input_number = [x for x in input("Enter the string of numbers separated by comma:").split(',')]
     result_list = []
-    for number in input_number.split(','):
+    for number in input_number:
         result_list.append(find_q(int(number)))
 
     print(result_list)
