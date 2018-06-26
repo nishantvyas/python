@@ -23,9 +23,16 @@ def uniqueWords(stringObj):
     """
     returnListObj = []
     inputListObj = [x for x in stringObj.split()]
+
+    ##manually removing duplicate words by creating new list
+    """
     for i in range(0,len(inputListObj)):
         if not inputListObj[i] in returnListObj:
             returnListObj.append(inputListObj[i])
+    """
+
+    ###using set method on list to remove duplicates
+    returnListObj = list(set(inputListObj))
 
     return returnListObj
 
