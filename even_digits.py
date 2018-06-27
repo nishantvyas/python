@@ -36,7 +36,7 @@ if __name__ == "__main__":
     ##find all numbers between 1000 and 2000 with all even digits
     all_even_digits = []
     min_range = 1000
-    max_range = 2600
+    max_range = 3000
 
     for number in range(min_range,max_range):
         if checkEvenDigits(number):
