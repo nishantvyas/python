@@ -62,7 +62,7 @@ class linkedList():
             self.rootnode = newnode
 
         except:
-            print("Unexpected Error: " + sys.exc_info()[0])
+            print("Unexpected Error: " )
             raise
 
     def remove(self,data):
@@ -71,7 +71,34 @@ class linkedList():
         :param data:
         :return:
         """
-        pass
+        try:
+            if self.size == 0:
+                print("No nodes in list")
+            else:
+                currnode = self.rootnode
+
+                if currnode.nextnode:
+                    while currnode.nextnode:
+                        tempnode = currnode.nextnode
+                        if tempnode.data == data:
+                            currnode.nextnode = tempnode.nextnode
+                        elif not tempnode.nextnode:
+                            break
+                        else:
+                            currnode = tempnode.nextnode
+                else:
+                    if currnode.data == data:
+                        self.rootnode = None
+
+                self.size -= 1
+                print("Node is removed")
+                print("Nodes left in list are")
+                self.traverse()
+
+        except:
+            print("Unexpected Error: ")
+            raise
+
 
     def search(self, data):
         """
@@ -80,7 +107,7 @@ class linkedList():
         :return:
         """
         pass
-    
+
     def traverse(self):
         """
         method with traverse thru the link list and print all data value
@@ -99,10 +126,8 @@ class linkedList():
                     currnode = currnode.nextnode
                 #print the data of last node
                 print(currnode.data)
-
-            return
         except:
-            print("Unexpected Error: " + sys.exc_info()[0])
+            print("Unexpected Error: ")
             raise
 
 if __name__ == "__main__":
@@ -111,5 +136,15 @@ if __name__ == "__main__":
     mylinklist = linkedList()
     mylinklist.insert(10)
     mylinklist.insert(20)
-    print(mylinklist.listsize())
-    mylinklist.traverse()
+    mylinklist.insert(30)
+    mylinklist.insert(40)
+    mylinklist.insert(50)
+    mylinklist.insert(10)
+    #print(mylinklist.listsize())
+    #mylinklist.traverse()
+    mylinklist.remove(10)
+    mylinklist.remove(50)
+    mylinklist.remove(30)
+    mylinklist.remove(40)
+    mylinklist.remove(20)
+    mylinklist.remove(10)
