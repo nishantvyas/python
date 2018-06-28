@@ -3,7 +3,10 @@ Testing LinkedList
 Every node will have data (integer value) and address to the next node.
 LinkedList will have the size of the list.
 """
-class linkedNode():
+
+import sys
+
+class node():
     """
     template for each node
     """
@@ -37,9 +40,76 @@ class linkedList():
         """
         return self.size
 
+    def insert(self,data):
+        """
+        method to insert data in linkedlist.
+        :param data:
+        :return:
+        """
+        try:
+
+            ## Create a new node with given data
+            newnode = node(data)
+
+            #First check if the size of linkedlist is zero then this will be first/root node.
+            if not self.size == 0:
+                newnode.nextnode = self.rootnode
+
+            ##Increase the size of linked list
+            self.size += 1
+
+            ##assign the rootnode to newly created node
+            self.rootnode = newnode
+
+        except:
+            print("Unexpected Error: " + sys.exc_info()[0])
+            raise
+
+    def remove(self,data):
+        """
+
+        :param data:
+        :return:
+        """
+        pass
+
+    def search(self, data):
+        """
+
+        :param data:
+        :return:
+        """
+        pass
+    
+    def traverse(self):
+        """
+        method with traverse thru the link list and print all data value
+        :return:
+        """
+        try:
+
+            currnode = self.rootnode
+
+            if self.size == 0:
+                print("No nodes in list")
+            else:
+                ##loop thru each node until last node and print the data
+                while currnode.nextnode:
+                    print(currnode.data)
+                    currnode = currnode.nextnode
+                #print the data of last node
+                print(currnode.data)
+
+            return
+        except:
+            print("Unexpected Error: " + sys.exc_info()[0])
+            raise
 
 if __name__ == "__main__":
     """
     """
     mylinklist = linkedList()
+    mylinklist.insert(10)
+    mylinklist.insert(20)
     print(mylinklist.listsize())
+    mylinklist.traverse()
