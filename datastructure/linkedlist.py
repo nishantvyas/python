@@ -91,7 +91,7 @@ class linkedList():
                         self.rootnode = None
 
                 self.size -= 1
-                print("Node is removed")
+                print(f"Node {data} is removed")
                 print("Nodes left in list are")
                 self.traverse()
 
@@ -106,7 +106,37 @@ class linkedList():
         :param data:
         :return:
         """
-        pass
+        """
+
+        :param data:
+        :return:
+        """
+        try:
+            currnode = self.rootnode
+            found = False
+
+            if self.size == 0:
+                print("No nodes in list")
+                return
+            else:
+                ##loop thru each node until last node and print the data
+                while currnode.nextnode:
+                    if currnode.data == data:
+                        print(f"data {data} is found")
+                        found = True
+                    currnode = currnode.nextnode
+                #print the data of last node
+                if currnode.data == data:
+                    print(f"data {data} is found")
+                    found = True
+
+            if not found:
+                print(f"data {data} is NOT found")
+
+        except:
+            print("Unexpected Error: ")
+            raise
+
 
     def traverse(self):
         """
@@ -140,8 +170,10 @@ if __name__ == "__main__":
     mylinklist.insert(40)
     mylinklist.insert(50)
     mylinklist.insert(10)
-    #print(mylinklist.listsize())
-    #mylinklist.traverse()
+    print(mylinklist.listsize())
+    mylinklist.traverse()
+    mylinklist.search(20)
+    mylinklist.search(90)
     mylinklist.remove(10)
     mylinklist.remove(50)
     mylinklist.remove(30)
