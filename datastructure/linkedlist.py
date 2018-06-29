@@ -221,6 +221,9 @@ class doublyLinkedList():
             ##Increase the size of linked list
             self.size += 1
 
+            self.traverse()
+            print(f"New size of the list is {self.listsize()}")
+
         except:
             print("Unexpected Error: " )
             raise
@@ -244,6 +247,42 @@ class doublyLinkedList():
                     currnode = currnode.nextnode
                 # print the data of last node
                 print(currnode.data)
+        except:
+            print("Unexpected Error: ")
+            raise
+
+    def remove(self,data):
+        """
+
+        :param data:
+        :return:
+        """
+        try:
+            if self.size == 0:
+                print("No nodes in list.")
+            else:
+                currnode = self.rootnode
+
+                ## deal with all non-root nodes
+                while currnode.nextnode:
+                    tempnode = currnode.nextnode
+                    if tempnode.data == data:
+                        if tempnode.nextnode:
+                            tempnode.nextnode.prevnode = currnode
+                        currnode.nextnode = tempnode.nextnode
+                        self.size -= 1
+                        print(f"Node {data} is removed.")
+                    else:
+                        currnode = tempnode
+                ##work on root node
+                if self.rootnode.data == data:
+                    self.rootnode = self.rootnode.nextnode
+                    self.size -= 1
+                    print(f"Node {data} is removed.")
+
+                self.traverse()
+                print(f"New size of the list is {self.listsize()}")
+
         except:
             print("Unexpected Error: ")
             raise
