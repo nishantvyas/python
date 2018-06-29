@@ -195,6 +195,58 @@ class doublyLinkedList():
         """
         return self.size
 
+    def insert(self,data):
+        """
+        method to insert data in double linkedlist.
+        :param data:
+        :return:
+        """
+        try:
+
+            ## Create a new node with given data
+            newnode = node(data)
+
+            #First check if the size of linkedlist is zero then this will be first/root node.
+            if not self.size == 0:
+                #assign prevnode address for current root node and push it down
+                tempnode = self.rootnode
+                tempnode.prevnode = newnode
+                #make new node root node
+                newnode.nextnode = tempnode
+
+            ##assign the rootnode to newly created node
+            self.rootnode = newnode
+            newnode.prevnode = None
+
+            ##Increase the size of linked list
+            self.size += 1
+
+        except:
+            print("Unexpected Error: " )
+            raise
+
+    def traverse(self):
+        """
+        method with traverse thru the link list and print all data value
+        :return:
+        """
+        try:
+
+            print("Nodes in the list are:")
+            currnode = self.rootnode
+
+            if self.size == 0:
+                print("No nodes in list.")
+            else:
+                ##loop thru each node until last node and print the data
+                while currnode.nextnode:
+                    print(currnode.data)
+                    currnode = currnode.nextnode
+                # print the data of last node
+                print(currnode.data)
+        except:
+            print("Unexpected Error: ")
+            raise
 
 if __name__ == "__main__":
     """
