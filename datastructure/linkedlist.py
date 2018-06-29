@@ -4,8 +4,6 @@ Every node will have data (integer value) and address to the next node.
 LinkedList will have the size of the list.
 """
 
-import sys
-
 class node():
     """
     template for each node
@@ -160,6 +158,43 @@ class linkedList():
         except:
             print("Unexpected Error: ")
             raise
+
+
+class doubleLinkedNode():
+    """
+    template for each node
+    """
+
+    #initialise each new node with data as incoming argument and load the value with nextnode & prevnode
+    def __init__(self, data):
+        self.data = data
+        self.nextnode = None
+        self.prevnode = None
+
+class doublyLinkedList():
+    """
+    Base class for holdindg the doublylinkedlist.
+    Methods:
+        insert
+        remove
+        size
+        search
+        traverse
+    """
+    def __init__(self):
+        """
+        at initialization size is zero and no one is root node.
+        """
+        self.size = 0
+        self.rootnode = None
+
+    def listsize(self):
+        """
+        Size of the linkedlist
+        :return number:
+        """
+        return self.size
+
 
 if __name__ == "__main__":
     """
