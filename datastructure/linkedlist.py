@@ -77,23 +77,23 @@ class linkedList():
             else:
                 currnode = self.rootnode
 
-                if currnode.nextnode:
-                    while currnode.nextnode:
-                        tempnode = currnode.nextnode
-                        if tempnode.data == data:
-                            currnode.nextnode = tempnode.nextnode
-                        elif not tempnode.nextnode:
-                            break
-                        else:
-                            currnode = tempnode.nextnode
-                else:
-                    if currnode.data == data:
-                        self.rootnode = None
+                ## deal with all non-root nodes
+                while currnode.nextnode:
+                    tempnode = currnode.nextnode
+                    if tempnode.data == data:
+                        currnode.nextnode = tempnode.nextnode
+                        self.size -= 1
+                        print(f"Node {data} is removed")
+                    else:
+                        currnode = tempnode
+                ##work on root node
+                if self.rootnode.data == data:
+                    self.rootnode = self.rootnode.nextnode
+                    self.size -= 1
+                    print(f"Node {data} is removed")
 
-                self.size -= 1
-                print(f"Node {data} is removed")
-                print("Nodes left in list are")
                 self.traverse()
+                print(f"Size of the list is {self.listsize()}")
 
         except:
             print("Unexpected Error: ")
@@ -145,6 +145,7 @@ class linkedList():
         """
         try:
 
+            print("Nodes in the list are:")
             currnode = self.rootnode
 
             if self.size == 0:
@@ -169,7 +170,7 @@ if __name__ == "__main__":
     mylinklist.insert(30)
     mylinklist.insert(40)
     mylinklist.insert(50)
-    mylinklist.insert(10)
+#    mylinklist.insert(10)
     print(mylinklist.listsize())
     mylinklist.traverse()
     mylinklist.search(20)
