@@ -69,9 +69,10 @@ if __name__ == "__main__":
     """
     """
     mystack = stack()
-    print(f"Item pushed to stack. New size of the stack is {mystack.stack_size()}") if mystack.push(10) else print("Item pushed failed")
-    print(f"Item pushed to stack. New size of the stack is {mystack.stack_size()}") if mystack.push(30) else print("Item pushed failed")
-    print(f"Item pushed to stack. New size of the stack is {mystack.stack_size()}") if mystack.push(60) else print("Item pushed failed")
+    items_list = [22,33,44,55]
+    for item in items_list:
+        print(f"Item {item} pushed to stack. New size of the stack is {mystack.stack_size()}") if mystack.push(item) else print("Item pushed failed")
+        
     print(mystack.printStack())
     mystack.pop()
     print(mystack.printStack())
