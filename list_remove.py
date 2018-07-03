@@ -30,9 +30,20 @@ def list_remove_fast(listObj, item):
 
     return [x for x in listObj if x!=24 ]
 
+def printlist_rownum(listObj):
+    """
+
+    :param listObj:
+    :return:
+    """
+    ##enumerate create rownum, value tuple
+    for rownum, value in enumerate(listObj):
+        print(f"rownum: {rownum} has value: {value}")
+
 if __name__ == "__main__":
     """
     """
     my_list = [12,24,35,24,88,120,155]
     print(list_remove_native(my_list, 24))
     print(list_remove_fast(my_list, 24))
+    printlist_rownum(my_list)
