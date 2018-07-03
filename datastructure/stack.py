@@ -46,10 +46,14 @@ class stack():
         :return item:
         """
         try:
-            item = self.__stack[-1]
-            print(f"Item {item} is popped. New size of the stack is {self.stack_size()}")
-            del self.__stack[-1]
-            return item
+            if self.stack_size() > 0:
+                ##pop method would do the job too
+                item = self.__stack[-1]
+                print(f"Item {item} is popped. New size of the stack is {self.stack_size()}")
+                del self.__stack[-1]
+                return item
+            else:
+                print("Stack is empty.")
         except:
             return None
 
@@ -59,8 +63,11 @@ class stack():
         :return item:
         """
         try:
-            print(f"Item {self.__stack[-1]} is peeked.")
-            return self.__stack[-1]
+            if self.stack_size() > 0:
+                print(f"Item {self.__stack[-1]} is peeked.")
+                return self.__stack[-1]
+            else:
+                print("Stack is empty.")
         except:
             return None
 
@@ -71,9 +78,14 @@ if __name__ == "__main__":
     mystack = stack()
     items_list = [22,33,44,55]
     for item in items_list:
-        print(f"Item {item} pushed to stack. New size of the stack is {mystack.stack_size()}") if mystack.push(item) else print("Item pushed failed")
-        
+        print(f"PUSH: Item {item} pushed to stack. New size of the stack is {mystack.stack_size()}") if mystack.push(item) else print("Item pushed failed")
+
     print(mystack.printStack())
-    mystack.pop()
+
+    poped_item = mystack.pop()
+    print(f"Popped item was {poped_item}")
+
     print(mystack.printStack())
-    mystack.peek()
+
+    peeked_item = mystack.peek()
+    print(f"Peeked item was {peeked_item}")
