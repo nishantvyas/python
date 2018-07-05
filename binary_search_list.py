@@ -20,6 +20,12 @@ def bin_search_new(list, element):
     :return index:
     """
 
+    ## for this method to work list must be sorted
+    list.sort()
+
+    ## start with full window top, bootm then find middle element compare and move the window up or down until
+    # the element is found.
+    
     index = -1
     top_of_list = len(list) - 1
     bottom_of_list = 0
