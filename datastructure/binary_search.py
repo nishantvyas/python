@@ -66,9 +66,10 @@ class binarySearch():
                 self.traverse_inorder(self.root_node)
             elif type == "preorder":
                 self.traverse_preorder(self.root_node)
-                pass
             elif type == "postorder":
-                pass
+                self.traverse_postorder(self.root_node)
+            else:
+                print("unknown type of ordering")
 
             return self.btree_list
         else:
@@ -104,11 +105,29 @@ class binarySearch():
 
         ##left
         if root_node.left_child:
-            self.traverse_inorder(root_node.left_child)
+            self.traverse_preorder(root_node.left_child)
 
         ##right
         if root_node.right_child:
-            self.traverse_inorder(root_node.right_child)
+            self.traverse_preorder(root_node.right_child)
+
+    def traverse_postorder(self, root_node):
+        """
+        postorder traverse: left, right, root and so on
+        :param root_node:
+        :return :
+        """
+
+        ##left
+        if root_node.left_child:
+            self.traverse_postorder(root_node.left_child)
+
+        ##right
+        if root_node.right_child:
+            self.traverse_postorder(root_node.right_child)
+
+        ##root
+        self.btree_list.append(root_node.data)
 
 
 if __name__ == "__main__":
@@ -132,3 +151,4 @@ if __name__ == "__main__":
 
     print(new_tree.traverse(type="inorder"))
     print(new_tree.traverse(type="preorder"))
+    print(new_tree.traverse(type="postorder"))
