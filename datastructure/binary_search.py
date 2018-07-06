@@ -54,6 +54,44 @@ class binarySearch():
                 child_node = node(data)
                 root_node.left_child = child_node
 
+    def traverse(self,type="inorder"):
+        """
+        tree traverse
+        :return:
+        """
+        self.btree_list = []
+
+        if self.root_node:
+            if type == "inorder":
+                self.traverse_inorder(self.root_node)
+            elif type == "preorder":
+                pass
+            elif type == "postorder":
+                pass
+
+            return self.btree_list
+        else:
+            print("No nodes in tree")
+            return
+
+    def traverse_inorder(self, root_node):
+        """
+        inorder traverse: left, root, right and so on
+        :param root_node:
+        :return :
+        """
+        ##left
+        if root_node.left_child:
+            self.traverse_inorder(root_node.left_child)
+
+        ##root
+        self.btree_list.append(root_node.data)
+
+        ##right
+        if root_node.right_child:
+            self.traverse_inorder(root_node.right_child)
+
+
 
 if __name__ == "__main__":
     """
@@ -73,3 +111,5 @@ if __name__ == "__main__":
     print(new_tree.root_node.left_child.data)
     print(new_tree.root_node.left_child.right_child.data)
     print(new_tree.root_node.right_child.data)
+
+    print(new_tree.traverse(type="inorder"))
