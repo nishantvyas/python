@@ -157,7 +157,24 @@ class binarySearch():
 
         :return:
         """
-        pass
+        self.max_value = None
+
+        if self.root_node:
+            self.findMax(self.root_node)
+
+        return self.max_value
+
+    def findMax(self, node):
+        """
+
+        :param root_node:
+        :return:
+        """
+        if node.right_child:
+            self.findMax(node.right_child)
+        else:
+            self.max_value = node.data
+
 
     def delete(self, data):
         """
@@ -181,13 +198,9 @@ if __name__ == "__main__":
     #right_child
     new_tree.insert(7)
     ### print to see if tree is created.
-    print(new_tree.root_node.data)
-    print(new_tree.root_node.left_child.data)
-    print(new_tree.root_node.left_child.right_child.data)
-    print(new_tree.root_node.right_child.data)
-
     print(new_tree.traverse(type="inorder"))
     print(new_tree.traverse(type="preorder"))
     print(new_tree.traverse(type="postorder"))
 
     print(new_tree.getMinValue())
+    print(new_tree.getMaxValue())
