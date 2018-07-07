@@ -129,6 +129,43 @@ class binarySearch():
         ##root
         self.btree_list.append(root_node.data)
 
+    def getMinValue(self):
+        """
+
+        :return:
+        """
+        self.min_value = None
+
+        if self.root_node:
+            self.findMin(self.root_node)
+
+        return self.min_value
+
+    def findMin(self, node):
+        """
+
+        :param root_node:
+        :return:
+        """
+        if node.left_child:
+            self.findMin(node.left_child)
+        else:
+            self.min_value = node.data
+
+    def getMaxValue(self):
+        """
+
+        :return:
+        """
+        pass
+
+    def delete(self, data):
+        """
+
+        :param data:
+        :return:
+        """
+        pass
 
 if __name__ == "__main__":
     """
@@ -152,3 +189,5 @@ if __name__ == "__main__":
     print(new_tree.traverse(type="inorder"))
     print(new_tree.traverse(type="preorder"))
     print(new_tree.traverse(type="postorder"))
+
+    print(new_tree.getMinValue())
