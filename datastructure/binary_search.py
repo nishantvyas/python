@@ -175,14 +175,57 @@ class binarySearch():
         else:
             self.max_value = node.data
 
-
-    def delete(self, data):
+    def removeNode(self, data, node):
         """
 
         :param data:
+        :param node:
         :return:
         """
-        pass
+
+        if not node:
+            return node;
+
+        if data < node.data:
+            node.left_child = self.removeNode(data, node.left_child);
+        elif data > node.data:
+            node.right_child = self.removeNode(data, node.right_child);
+        else:
+
+            if not node.left_child and not node.right_child:
+                print("Removing a leaf node...");
+                del node;
+                return None;
+
+            if not node.left_child:  # node !!!
+                print("Removing a node with single right child...");
+                tempNode = node.right_child;
+                del node;
+                return tempNode;
+            elif not node.right_child:  # node instead of self
+                print("Removing a node with single left child...");
+                tempNode = node.left_child;
+                del node;
+                return tempNode;
+
+            print("Removing node with two children....");
+            tempNode = self.getPredecessor(node.left_child);  # self instead of elf  + get predecessor
+            node.data = tempNode.data;
+            node.left_child = self.removeNode(tempNode.data, node.left_child);
+
+        return node;  # !!!!!!!!!!!!
+
+    def getPredecessor(self, node):
+
+        if node.right_child:
+            return self.getPredeccor(node.right_child);
+
+        return node;
+
+    def remove(self, data):
+        if self.root_node:
+            self.root_node = self.removeNode(data, self.root_node);
+
 
 if __name__ == "__main__":
     """
@@ -204,3 +247,15 @@ if __name__ == "__main__":
 
     print(new_tree.getMinValue())
     print(new_tree.getMaxValue())
+
+    ##testing removal
+    new_tree.insert(9)
+    new_tree.insert(11)
+    new_tree.insert(13)
+    new_tree.insert(2)
+
+    print(new_tree.traverse(type="inorder"))
+    new_tree.remove(7)
+
+    print(new_tree.traverse(type="inorder"))
+
