@@ -2,7 +2,9 @@
 Scrape meta information title, description, keywords for a given url
 """
 
+import re
 import requests
+import urllib.request
 from bs4 import BeautifulSoup
 
 class scrape_meta:
@@ -32,17 +34,40 @@ class scrape_meta:
         description = soup.find("meta", property="og:description")
         keywords = soup.find("meta", attrs={"name": "keywords"})
 
-        payload["title"] = title["content"] if title else "No meta title given"
-        payload["description"] = description["content"] if title else "No meta description given"
-        payload["keywords"] = keywords["content"] if keywords else "No meta keywords given"
+        payload["title"] = title["content"] if title else ""
+        payload["description"] = description["content"] if description else ""
+        payload["keywords"] = keywords["content"] if keywords else ""
 
         return payload
 
+    def visible(self, element):
+        if element.parent.name in ['style', 'script', '[document]', 'head', 'title']:
+            return False
+        elif re.match('<!--.*-->', str(element.encode('utf-8'))):
+            return False
+        return True
+
+
+    def text_from_html(self):
+        """
+
+        :param body:
+        :return:
+        """
+
+        scrape_url = self.url
+        html = urllib.request.urlopen(scrape_url).read()
+        soup = BeautifulSoup(html,"lxml")
+        texts = soup.findAll(text=True)
+        visible_texts = filter(self.visible, texts)
+
+        return u" ".join(t.strip() for t in visible_texts)
 
 
 
 if __name__ == "__main__":
-
+    """
+    """
     url = "https://www.cnn.com/2018/09/27/politics/brett-kavanaugh-supreme-court-rosenstein-donald-trump/index.html"
     scrapeObj = scrape_meta(url)
 
@@ -50,5 +75,4 @@ if __name__ == "__main__":
     if len(payload) > 0:
         print(payload)
 
-
-
+    text_body = scrapeObj.text_from_html()
