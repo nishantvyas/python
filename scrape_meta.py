@@ -41,6 +41,11 @@ class scrape_meta:
         return payload
 
     def visible(self, element):
+        """
+        
+        :param element:
+        :return:
+        """
         if element.parent.name in ['style', 'script', '[document]', 'head', 'title']:
             return False
         elif re.match('<!--.*-->', str(element.encode('utf-8'))):
